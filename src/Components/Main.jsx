@@ -4,7 +4,7 @@ import MainIMG from "../Assets/main.jpg";
 const Main = () => {
     return (
         <div className=" h-screen bg-black p-10">
-            <div className="flex justify-between items-center mt-40">
+            <div className="flex justify-between items-center mt-24">
                 <div className="text-left text-white w-1/2 ml-20">
                     <div className="font-jockey">
                         <h1 className="text-4xl font-bold mb-2">Mau catring yang murah dan enak</h1>
@@ -21,11 +21,11 @@ const Main = () => {
                         </button>
                     </div>
                 </div>
-                <div className="w-1/2 flex justify-center">
+                <div className="md:w-1/2 w-full flex justify-center">
                     <img
                         src={MainIMG}
                         alt="MainImage"
-                        className="w-[350px] h-[350px] rounded-lg object-cover"
+                        className="w-full max-w-md rounded-lg object-cover"
                     />
                 </div>
             </div>

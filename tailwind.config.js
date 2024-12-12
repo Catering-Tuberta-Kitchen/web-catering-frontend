@@ -14,6 +14,7 @@ module.exports = {
         MAIN: "#1a1a1a",
         SEC: "#B2261E",
         THIRD: "#7F7D7D",
+        FOURTH: "#D9D9D9",
         HOVER: "#E6B800",
         PrimFont: "#FFCC00",
         SecFont: "#FFFFFF",

@@ -9,10 +9,10 @@ const Footer = () => {
         <div class="container mx-auto flex items-center justify-between">
 
             <div class="flex space-x-4 ml-5">
-            <a href="#" aria-label="WhatsApp">
+            <a href="https://api.whatsapp.com/send/?phone=6283842343711&text=Halo%20saya%20ingin%20memesan%20catering&app_absent=0" aria-label="WhatsApp">
                 <img src={WhatsappIcon} alt="WhatsApp" class=" w-8 h-8" />
             </a>
-            <a href="#" aria-label="Instagram">
+            <a href="https://www.instagram.com/p/DDSAkClNVr3/?utm_source=ig_web_copy_link" aria-label="Instagram">
                 <img src={InstagramIcon} alt="Instagram" class="rounded-full w-8 h-8" />
             </a>
             </div>

@@ -91,17 +91,19 @@ const Contact = () => {
                     placeholder="Submit Review"
                     value={formData.review}
                     onChange={handleChange}
-                    className="bg-transparent w-full py-2 outline-none text-MAIN resize-none placeholder-THIRD"
+                    className="bg-transparent w-full h-60 py-2 outline-none text-MAIN resize-none placeholder-THIRD"
                     rows="4"
                     required
                 ></textarea>
                 </div>
+                <div className="flex justify-end">
                 <button
                 type="submit"
-                className="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-2 px-6 rounded-md w-full"
+                className=" bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-2 px-6 rounded-full w-40"
                 >
                 Send
                 </button>
+                </div>
             </form>
             </div>
         </div>

@@ -2,13 +2,14 @@ import './App.css'
 import { BrowserRouter as Router, Routes, Route, createBrowserRouter, RouterProvider } from "react-router-dom";
 import Main from './Components/Main';
 import Navbar from './Components/Navbar';
+import Footer from './Components/Footer';
 import CreateAcc from './Components/CreateAcc';
 import Login from './Components/Login';
+import Recover from './Components/Recover';
 import About from './Components/About';
 import Menu from './Components/Menu';
 import Contact from './Components/Contact';
 import Error from './Error';
-import Footer from './Components/Footer';
 import MainLayout from './MainLayout';
 
 function App() {
@@ -44,7 +45,11 @@ const router = createBrowserRouter([
     {
       path: "register-account",
       element: <CreateAcc/>,
-    }
+    },
+    {
+      path: "recovery-account",
+      element: <Recover/>,
+    },
   ],
 )
 

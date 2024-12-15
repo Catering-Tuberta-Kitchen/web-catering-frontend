@@ -2,17 +2,17 @@ import { Eye, EyeOff } from 'lucide-react';
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const Recover = () => {
     const [showPassword, setShowPassword] = useState(false);
     const handleSubmit = (e) => {
         e.preventDefault();
-        alert("Login Success");
+        alert("Password Successfully Changed");
     };
 
     return (
         <div className="bg-MAIN h-screen">
             <div className="flex justify-center p-20">
-                <p className="text-PrimFont font-lexend text-5xl ">Login</p>
+                <p className="text-PrimFont font-lexend text-5xl ">Change Password</p>
             </div>
             <div className="flex justify-center flex-col items-center">
                 <form
@@ -65,4 +65,4 @@ const Login = () => {
     )
 };
 
-export default Login;
+export default Recover;

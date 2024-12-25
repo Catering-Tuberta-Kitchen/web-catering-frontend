@@ -9,6 +9,7 @@ import Recover from './Components/Recover';
 import About from './Components/About';
 import Menu from './Components/Menu';
 import Contact from './Components/Contact';
+import Profile from './Components/Profile';
 import Error from './Error';
 import MainLayout from './MainLayout';
 
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
         {
           path: "contact",
           element: <Contact/>,
+        },
+        {
+          path: "profile",
+          element: <Profile/>,
         },
       ],
     },

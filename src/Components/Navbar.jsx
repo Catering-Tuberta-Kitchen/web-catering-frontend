@@ -1,8 +1,8 @@
 import React from "react";
 import NavIcon from "../Assets/NavIcon.png";
 import { ShoppingCart } from 'lucide-react';
+import { User } from 'lucide-react';
 import { Link, useLocation } from "react-router-dom";
-import CreateAcc from "./CreateAcc";
 
 const Navbar = () => {
     const location = useLocation();
@@ -67,7 +67,13 @@ const Navbar = () => {
                 className="text-black font-inria font-medium text-lg rounded-2xl border border-PrimFont bg-PrimFont px-[26px] py-[6px]">
                 Login
                 </Link>
+                <div className="bg-blue-400 p-2 rounded-full">
+                    <Link to="profile">
+                        <User />
+                    </Link>
+                </div>
             </div>
+            
         </div>
     );
 };

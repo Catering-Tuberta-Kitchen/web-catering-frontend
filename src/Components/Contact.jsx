@@ -24,7 +24,7 @@ const Contact = () => {
         <div className="bg-MAIN min-h-screen">
         <div className="flex justify-center items-center">
             <h1 className="text-white font-lexend text-4xl mt-20">
-            <span className="text-PrimFont">Contact</span> Us
+            <span className="text-PrimFont">Kontak</span> Kami
             </h1>
         </div>
         

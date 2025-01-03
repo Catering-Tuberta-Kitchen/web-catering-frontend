@@ -15,48 +15,53 @@ import MainLayout from './MainLayout';
 
 function App() {
 
-const router = createBrowserRouter([
-  {
-      path: "/",
-      element: <MainLayout/>,
-      errorElement: <Error/>,
-      children: [
-        {
-          index: true,
-          element: <Main/>,
-        },
-        {
-          path: "menu",
-          element: <Menu/>,
-        },
-        {
-          path: "about",
-          element: <About/>,
-        },
-        {
-          path: "contact",
-          element: <Contact/>,
-        },
-        {
-          path: "profile",
-          element: <Profile/>,
-        },
-      ],
-    },
+
+
+  const router = createBrowserRouter([
     {
-      path: "login-account",
-      element: <Login/>,
-    },
-    {
-      path: "register-account",
-      element: <CreateAcc/>,
-    },
-    {
-      path: "recovery-account",
-      element: <Recover/>,
-    },
-  ],
-)
+        path: "/",
+        element: <MainLayout/>,
+        errorElement: <Error/>,
+        children: [
+          {
+            index: true,
+            element: <Main/>,
+          },
+          {
+            path: "menu",
+            element: <Menu
+              
+            />,
+          },
+          {
+            path: "about",
+            element: <About/>,
+          },
+          {
+            path: "contact",
+            element: <Contact/>,
+          },
+          {
+            path: "profile",
+            element: <Profile/>,
+          },
+        ],
+      },
+      {
+        path: "login-account",
+        element: <Login/>,
+      },
+      {
+        path: "register-account",
+        element: <CreateAcc/>,
+      },
+      {
+        path: "recovery-account",
+        element: <Recover/>,
+      },
+    ],
+  )
+
 
   return (
     <div className="">

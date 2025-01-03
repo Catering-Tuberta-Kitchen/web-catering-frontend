@@ -3,17 +3,16 @@ import AboutImage from "../assets/about.jpg";
 
 const About = () => {
     return (
-        <div className="bg-MAIN px-10 py-20">
-
+        <div className="bg-MAIN px-10">
             <div className="flex justify-center items-center mb-10">
-                <h1 className="font-lexend text-SecFont text-4xl">
+                <h1 className="font-lexend text-SecFont text-4xl mt-10">
                 <span className="text-PrimFont">Tentang</span> Kami
                 </h1>
             </div>
 
             <div className="flex flex-col md:flex-row justify-center items-center">
         
-        <div className="md:w-1/2 w-full flex justify-center">
+        <div className="md:w-1/2 w-full flex justify-center mb-10">
             <img
                 src={AboutImage}
                 alt="Ayam Bakar Kremes"

@@ -1,5 +1,6 @@
 import React from "react";
 import MainIMG from "../Assets/main.jpg";
+import { Link } from "react-router-dom";
 
 const Main = () => {
     return (
@@ -16,9 +17,11 @@ const Main = () => {
                     Berawal dari keinginan untuk menghadirkan hidangan rumahan yang sehat dan bergizi bagi mereka yang sibuk dan tak sempat memasak, kami tumbuh menjadi penyedia layanan kuliner yang lebih beragam
                     </p>
                     <div className="mt-8">
-                        <button className="bg-yellow-400 text-black text-lg font-bold px-6 py-3 rounded">
+                        <Link to="/Menu"
+                        className="bg-yellow-400 text-black text-lg font-bold px-6 py-3 rounded"
+                        >
                             Order Sekarang
-                        </button>
+                        </Link>
                     </div>
                 </div>
                 <div className="md:w-1/2 w-full flex justify-center">

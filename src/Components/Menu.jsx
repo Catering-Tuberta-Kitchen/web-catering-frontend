@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-function AxiosMenus() {
-    const [data, setData] = useState(null);
+const AxiosMenus = ({ addItemToCart }) => {
+    const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
-    useEffect(() => {
+    
+        useEffect(() => {
         axios
             .get('http://localhost:8000/api/menus')
             .then((response) => {
-                setData(response.data);
-                setLoading(false);
+            setData(response.data);
+            setLoading(false);
             })
             .catch((error) => {
-                setError(error);
-                setLoading(false);
+            setError(error);
+            setLoading(false);
             });
     }, []);
 
@@ -46,74 +46,41 @@ function AxiosMenus() {
         );
     }
     
-
     return (
-        <div className="p-6 bg-MAIN min-h-screen">
-            <div className="mb-10">
-                <div className="flex justify-center items-center">
-                    <h1 className="text-white font-lexend text-4xl mt-10 mb-10">
-                    <span className="text-PrimFont">Best</span> Seller
-                    </h1>
-                </div>
-                <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-                    {data.slice(0, 3).map((menu) => (
-                        <div
-                            key={menu.id}
-                            className="bg-FOURTH shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between w-96 h-104 mx-auto"
-                        >
-                            <img
-                                src={`http://localhost:8000/${menu.foto_menu}`}
-                                alt={menu.nama_menu}
-                                className="w-full h-48 object-cover"
-                            />
-                            <div className="text-center p-4">
-                                <h2 className="text-xl font-bold text-gray-800">{menu.nama_menu}</h2>
-                                <p className="text-gray-700 font-semibold">IDR. {menu.harga_menu}</p>
-                            </div>
-                            <div className="p-4 text-center">
-                                <button className="bg-MAIN text-PrimFont px-4 py-2 rounded-full shadow transition-colors duration-300 hover:bg-THIRD">
-                                    Masukan Keranjang
-                                </button>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-    
-            <div>
-                <div className="flex justify-center items-center">
-                    <h1 className="text-white font-lexend text-4xl mb-10">
-                    <span className="text-PrimFont">Menu</span> Kami
-                    </h1>
-                </div>
-                <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-                    {data.slice(3).map((menu) => (
-                        <div
-                            key={menu.id}
-                            className="bg-FOURTH shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between w-96 h-104 mx-auto"
-                        >
-                            <img
-                                src={`http://localhost:8000/${menu.foto_menu}`}
-                                alt={menu.nama_menu}
-                                className="w-full h-48 object-cover"
-                            />
-                            <div className="text-center p-4">
-                                <h2 className="text-xl font-bold text-gray-800">{menu.nama_menu}</h2>
-                                <p className="text-gray-700 font-semibold">IDR. {menu.harga_menu}</p>
-                            </div>
-                            <div className="p-4 text-center">
-                                <button className="bg-MAIN text-PrimFont px-4 py-2 rounded-full shadow transition-colors duration-300 hover:bg-THIRD">
-                                    Masukan Keranjang
-                                </button>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
+        <div className="p-6 bg-MAIN">
+          <div className="flex justify-center items-center">
+            <h1 className="text-white font-lexend text-4xl mt-5 mb-10">
+            <span className="text-PrimFont">Menu</span> Kami
+            </h1>
         </div>
-    );
-    
-    
-}
+          <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mb-10">
+            {data.map((menu) => (
+              <div
+                key={menu.id}
+                className="bg-FOURTH shadow-lg flex flex-col justify-between w-96 mx-auto"
+              >
+                <img src={`http://localhost:8000/storage/${menu.foto_menu}`} alt={menu.nama_menu} />
+                <div className="text-center p-4">
+                  <h2 className="text-xl font-bold">{menu.nama_menu}</h2>
+                  <p>IDR {menu.harga_menu}</p>
+                  <button
+                    onClick={() =>
+                      addItemToCart({
+                        id: menu.id,
+                        name: menu.nama_menu,
+                        price: menu.harga_menu,
+                      })
+                    }
+                    className="bg-MAIN text-PrimFont px-4 py-2 rounded-full"
+                  >
+                    Masukan Keranjang
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    };
 
 export default AxiosMenus;

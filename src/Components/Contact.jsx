@@ -35,9 +35,9 @@ const Contact = () => {
                 width="100%"
                 height="450"
                 allowFullScreen=""
-                loading="lazy"
+                loading="eager"
                 referrerPolicy="no-referrer-when-downgrade"
-                className="shadow-lg"
+                className="shadow-lg rounded-md"
             ></iframe>
             </div>
 

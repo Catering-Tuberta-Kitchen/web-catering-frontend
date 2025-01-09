@@ -1,29 +1,35 @@
 import { ShoppingCart, User } from "lucide-react";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import NavIcon from "../Assets/NavIcon.png";
 
-const Navbar = () => {
+const Navbar = ({ cart, clearCart, removeFromCart }) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const [isClicked, setIsClicked] = useState(false);
+    const [user, setUser] = useState(null);
     const location = useLocation();
     const isActive = (path) => location.pathname === path;
 
-    const handleCartClick = () => {
-        setIsClicked(!isClicked);
+    const auth = getAuth();
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser);
+        });
+
+        return () => unsubscribe();
+    }, [auth]);
+
+    const toggleCartDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
     };
 
-    const closeDropdown = () => {
-        setIsDropdownOpen(false);
-    };
-
     return (
-        <div className={`h-20 bg-MAIN flex items-center justify-between px-4 border-b border-b-white relative`}>
+        <div className="h-20 bg-MAIN flex items-center justify-between px-4 border-b border-b-white relative">
             {isDropdownOpen && (
                 <div
                     className="fixed inset-0 bg-FOURTH bg-opacity-50 z-10 mt-20"
-                    onClick={closeDropdown}
+                    onClick={() => setIsDropdownOpen(false)}
                 ></div>
             )}
 
@@ -52,35 +58,73 @@ const Navbar = () => {
                 </ul>
             </div>
 
-            <div className="flex items-center gap-10">
+            <div className="flex items-center gap-10 relative">
                 <div
-                    className={`text-white cursor-pointer relative z-10 transition-colors p-2 rounded-lg ${
-                        isClicked ? 'bg-FOURTH text-black' : 'hover:bg-FOURTH hover:text-black'
-                    }`}
-                    onClick={handleCartClick}
+                    className="text-white cursor-pointer relative z-20 transition-colors p-2 rounded-lg hover:bg-FOURTH hover:text-black"
+                    onClick={toggleCartDropdown}
                 >
-                    <ShoppingCart className={`${isClicked ? 'text-black' : 'text-white'} hover:text-black`} />
-                    {isDropdownOpen && isClicked && (
-                        <div className="absolute left-0 top-full mt-2 bg-white shadow-lg rounded-md p-4 z-20">
-                            <ul className="text-black">
-                                <li className="p-2 hover:bg-gray-100 cursor-pointer">Item 1</li>
-                                <li className="p-2 hover:bg-gray-100 cursor-pointer">Item 2</li>
-                                <li className="p-2 hover:bg-gray-100 cursor-pointer">Item 3</li>
-                            </ul>
-                        </div>
+                    <ShoppingCart />
+                    {cart.length > 0 && (
+                        <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                            {cart.length}
+                        </span>
                     )}
                 </div>
-                <Link
-                    to="register-account"
-                    className="text-black font-inria font-medium text-lg rounded-2xl border border-PrimFont bg-PrimFont px-[26px] py-[6px]"
-                >
-                    Login
-                </Link>
-                <div className="bg-blue-400 p-2 rounded-full">
-                    <Link to="profile">
-                        <User />
+
+                {isDropdownOpen && (
+                    <div className="absolute right-0 top-full mt-1 bg-white shadow-lg rounded-md p-4 z-30 w-64">
+                        <h2 className="text-lg font-bold text-black">Shopping Cart</h2>
+                        {cart.length === 0 ? (
+                            <p className="text-gray-500 mt-2">Your cart is empty.</p>
+                        ) : (
+                            <ul className="text-black mt-2 space-y-2">
+                                {cart.map((item, index) => (
+                                    <li key={index} className="flex justify-between items-center">
+                                        <span>{item.name} ({item.quantity})</span>
+                                        <button
+                                            className="text-red-500 hover:text-red-700"
+                                            onClick={() => removeFromCart(item.id)}
+                                        >
+                                            Remove
+                                        </button>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                        <div className="mt-4 flex justify-between">
+                            <button
+                                className="bg-red-500 text-white px-4 py-2 rounded-lg"
+                                onClick={clearCart}
+                            >
+                                Clear All
+                            </button>
+                            <Link
+                                to="/checkout"
+                                className="bg-green-500 text-white px-4 py-2 rounded-lg"
+                                onClick={() => setIsDropdownOpen(false)}
+                            >
+                                Checkout
+                            </Link>
+                        </div>
+                    </div>
+                )}
+
+                {user ? (
+                    <div className="flex items-center gap-4">
+                        <div className="bg-blue-400 p-2 rounded-full mr-10">
+                            <Link to="/profile">
+                                <User />
+                            </Link>
+                        </div>
+                    </div>
+                ) : (
+                    <Link
+                        to="/login-account"
+                        className="text-black font-inria font-medium text-lg rounded-2xl border border-PrimFont bg-PrimFont px-[26px] py-[6px]"
+                    >
+                        Login
                     </Link>
-                </div>
+                )}
             </div>
         </div>
     );

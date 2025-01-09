@@ -1,12 +1,31 @@
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { Eye, EyeOff } from 'lucide-react';
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from 'react-toastify';
+import { auth } from '../API/Firebase';
 
 const Login = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
-    const handleSubmit = (e) => {
+    const handleSubmit =async (e) => {
         e.preventDefault();
-        alert("Login Success");
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+            console.log("Login Successfull");
+            window.location.href="/profile";
+            toast.success("Login Berhasil", {
+                position: "top-center",
+                theme: "dark"
+            });
+        } catch (error) {
+            console.log(error.message);
+            toast.error(error.message, {
+                position: "bottom-center",
+                theme: "dark"
+            });
+        }
     };
 
     return (
@@ -22,6 +41,8 @@ const Login = () => {
                     <input
                         type="email"
                         placeholder="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         className="w-full px-3 py-2 bg-THIRD rounded-md focus:outline-white pr-10 font-lexend text-white placeholder-white"
                         required
                         />
@@ -29,6 +50,8 @@ const Login = () => {
                             <input
                                 type={showPassword ? "text" : "password"}
                                 placeholder="Enter your password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                                 className="w-full px-3 py-2 bg-THIRD rounded-md focus:outline-white pr-10 font-lexend text-white placeholder-white"
                                 required
                                 />
@@ -49,7 +72,7 @@ const Login = () => {
                 <div className="flex mt-6 font-lexend gap-1 flex-nowrap">
                     <p className="text-white text-sm">
                         Forgot your {" "}
-                        <Link to="/login-account" className="text-[#FFCC00] underline">
+                        <Link to="/recovery-account" className="text-[#FFCC00] underline">
                             password
                         </Link>
                         {" "}

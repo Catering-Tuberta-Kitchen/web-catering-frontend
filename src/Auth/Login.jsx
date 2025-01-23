@@ -17,12 +17,14 @@ const Login = () => {
             window.location.href="/profile";
             toast.success("Login Berhasil", {
                 position: "top-center",
+                pauseOnHover: false,
                 theme: "dark"
             });
         } catch (error) {
             console.log(error.message);
             toast.error(error.message, {
                 position: "bottom-center",
+                pauseOnHover: false,
                 theme: "dark"
             });
         }

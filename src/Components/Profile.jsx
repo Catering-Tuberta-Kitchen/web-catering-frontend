@@ -32,6 +32,7 @@ function Profile() {
             console.log("User Logged Out Successfull");
             toast.success("Berhasil Logout", {
                     position: "top-center",
+                    pauseOnHover: false,
                     theme: "dark"
             });
         } catch (error) {
@@ -87,16 +88,13 @@ function Profile() {
                         </>
                     ) : (
                         <div className="text-center">
-                            <p className="text-lg font-semibold text-white mb-4">
-                                Mohon untuk Login atau Buat Akun terlebih dahulu
-                            </p>
-                            <button className="bg-PrimFont hover:bg-HOVER text-black font-bold py-2 px-4 rounded shadow transition duration-300"
-                            onClick={handleLogin}
-                            >
-                                Klik Disini
-                            </button>
+                            <div className="flex justify-center items-center h-full">
+                                <div className="w-12 h-12 border-4 border-MAIN border-t-transparent rounded-full animate-spin"></div>
+                            </div>
+                            <p className="mt-4 text-MAIN font-semibold">Loading...</p>
                         </div>
-                    )}
+                    )
+                    }
                 </div>
             </div>
         </div>

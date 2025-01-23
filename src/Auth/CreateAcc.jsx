@@ -31,12 +31,14 @@ const CreateAcc = () => {
             console.log("User Registered Successfully");
             toast.success("Akun Berhasil Dibuat", {
                 position: "top-center",
+                pauseOnHover: false,
                 theme: "dark"
             });
         } catch (error) {
             console.log(error.message);
             toast.error(error.message, {
                 position: "bottom-center",
+                pauseOnHover: false,
                 theme: "dark"
             });
         }

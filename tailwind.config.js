@@ -25,6 +25,10 @@ module.exports = {
         lexend: ["'Lexend Exa'", "sans-serif"],
         jockey: ["'Jockey One'", "sans-serif"],
       },
+      animation: {
+        'spin-slow': 'spin 2s linear infinite',
+        'pulse-fast': 'pulse 0.5s linear infinite',
+      },
     },
   },
   plugins: [],

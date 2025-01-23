@@ -83,7 +83,7 @@ const Navbar = ({ cart, clearCart, removeFromCart }) => {
                                         <span>{item.name} ({item.quantity})</span>
                                         <button
                                             className="text-red-500 hover:text-red-700"
-                                            onClick={() => removeFromCart(item.id)}
+                                            onClick={() => removeFromCart(item)}
                                         >
                                             Remove
                                         </button>

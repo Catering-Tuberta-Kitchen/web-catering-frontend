@@ -1,17 +1,17 @@
-import './App.css'
-import { BrowserRouter as Router, Routes, Route, createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useState } from 'react';
-import Main from './Components/Main';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+import './App.css';
 import CreateAcc from './Auth/CreateAcc';
 import Login from './Auth/Login';
-import Recover from './Components/Recover';
 import About from './Components/About';
-import Menu from './Components/Menu';
 import Contact from './Components/Contact';
+import Main from './Components/Main';
+import Menus from './Components/Menu';
 import Profile from './Components/Profile';
+import Recover from './Components/Recover';
 import Error from './Error';
 import MainLayout from './MainLayout';
-import { ToastContainer } from 'react-toastify';
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -61,7 +61,7 @@ function App() {
         },
         {
           path: "menu",
-          element: <Menu addItemToCart={addItemToCart} />,
+          element: <Menus addItemToCart={addItemToCart} />,
         },
         {
           path: "about",
@@ -90,6 +90,7 @@ function App() {
       element: <Recover />,
     },
   ]);
+
 
   return (
     <div>

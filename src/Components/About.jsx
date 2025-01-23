@@ -3,7 +3,7 @@ import AboutImage from "../assets/about.jpg";
 
 const About = () => {
     return (
-        <div className="bg-MAIN px-10">
+        <div className="bg-MAIN h-screen px-10">
             <div className="flex justify-center items-center mb-10">
                 <h1 className="font-lexend text-SecFont text-4xl mt-10">
                 <span className="text-PrimFont">Tentang</span> Kami

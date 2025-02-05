@@ -12,6 +12,7 @@ import Profile from './Components/Profile';
 import Recover from './Components/Recover';
 import Error from './Error';
 import MainLayout from './MainLayout';
+import { toast } from 'react-toastify';
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -28,15 +29,61 @@ function App() {
     });
   };
 
-  const removeItemFromCart = (id) => {
-    setCart((prevCart) =>
-      prevCart.map((i) =>
-        i.id === id && i.quantity > 1
-          ? { ...i, quantity: i.quantity - 1 }
-          : i
-      ).filter((i) => i.quantity > 0)
-    );
-  };
+  const removeFromCart = (id) => {
+  try {
+    setCart((prevCart) => {
+      const itemToRemove = prevCart.find((item) => item.id === id);
+      if (!itemToRemove) {
+        throw new Error("Item tidak ditemukan di keranjang");
+      }
+
+      const updatedCart = prevCart.filter((item) => item.id !== id);
+
+      toast.success(
+        `${itemToRemove.name} Berhasil dihapus dari keranjang`,
+        {
+          position: "top-left",
+          autoClose: 2000,
+          closeOnClick: false,
+          pauseOnHover: false,
+          draggable: true,
+          theme: "dark",
+          className: "custom-toast"
+        }
+      );
+
+      return updatedCart;
+    });
+  } catch (error) {
+    toast.error(error.message || "Terjadi kesalahan saat menghapus item.",
+      {
+        position: "bottom-right",
+        autoClose: 2000,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: true,
+        theme: "dark",
+        className: "custom-toast"
+      });
+  }
+};
+
+const handleQuantityChange = (id, newQuantity) => {
+  if (newQuantity === "") {
+    newQuantity = 1;
+  } else if (newQuantity < 1) {
+    newQuantity = 1;
+  } else if (newQuantity > 1000) {
+    newQuantity = 1000;
+  }
+
+  setCart((prevCart) =>
+    prevCart.map((item) =>
+      item.id === id ? { ...item, quantity: newQuantity } : item
+    )
+  );
+};
+
 
   const clearCart = () => {
     setCart([]);
@@ -49,8 +96,9 @@ function App() {
         <MainLayout
           cart={cart}
           addItemToCart={addItemToCart}
-          removeItemFromCart={removeItemFromCart}
+          removeFromCart={removeFromCart}
           clearCart={clearCart}
+          handleQuantityChange={handleQuantityChange}
         />
       ),
       errorElement: <Error />,

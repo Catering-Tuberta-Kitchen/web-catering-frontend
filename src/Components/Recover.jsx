@@ -4,8 +4,7 @@ import { Eye, EyeOff } from 'lucide-react';
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-function Recover () {
-    
+function Recover() {
     // const handleReset= async(e) => {
     //     e.preventDefault();
     //     const emailVal = e.target.email.value;
@@ -24,21 +23,21 @@ function Recover () {
     //     });
     // }
     return (
-        <div className="bg-MAIN h-screen flex justify-center items-center">
-            <div className="w-1/3 font-lexend">
-                <h1 className="text-PrimFont text-2xl mb-10 text-center">
+        <div className="bg-MAIN min-h-screen flex justify-center items-center px-4">
+            <div className="w-full max-w-md font-lexend p-6 rounded-lg shadow-lg">
+                <h1 className="text-PrimFont text-2xl mb-6 text-center">
                     Forgot Password
                 </h1>
-                    <p className="text-white text-sm text-left mb-6">
-                        Type your email address to reset password
-                    </p>
-                <form onSubmit={(e)=>handleReset(e)} className="flex flex-col gap-4">
-                <input
-                    type="email"
-                    placeholder="Email"
-                    className="w-full px-4 py-2 bg-gray-600 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 placeholder-gray-300"
-                    required
-                />
+                <p className="text-white text-sm text-left mb-4">
+                    Type your email address to reset password
+                </p>
+                <form onSubmit={(e) => handleReset(e)} className="flex flex-col gap-4">
+                    <input
+                        type="email"
+                        placeholder="Email"
+                        className="w-full px-4 py-2 bg-gray-600 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 placeholder-gray-300"
+                        required
+                    />
                     <button
                         type="submit"
                         className="w-full py-2 bg-PrimFont text-black rounded-md hover:bg-HOVER transition duration-200"

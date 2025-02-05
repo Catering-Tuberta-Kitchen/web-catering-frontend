@@ -16,7 +16,7 @@ function Profile() {
                 console.log(docSnap.data());
             } else {
                 console.log("Users Tidak Terdaftar");
-                
+
             }
 
         });
@@ -39,18 +39,10 @@ function Profile() {
             console.log("Error Logged Out", error.message );
         }
     }
-    
-    async function handleLogin() {
-        try {
-            window.location.href = "login-account";
-        } catch (error) {
-            console.log("Error Logged Out", error.message );
-        }
-    }
 
     return (
-        <div className="bg-MAIN flex items-center justify-center min-h-screen">
-            <div className="bg-THIRD p-10 rounded-3xl w-96">
+        <div className="bg-MAIN flex items-center justify-center min-h-screen pt-20">
+            <div className="bg-THIRD p-10 m-10 rounded-3xl w-96">
                 <div className="font-lexend">
                     {userDetails ? (
                         <>

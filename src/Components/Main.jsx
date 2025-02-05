@@ -1,37 +1,103 @@
-import React from "react";
-import MainIMG from "../Assets/main.jpg";
+import React, { useEffect, useState } from "react";
+import { MainAPI } from '../API/BaseURL';
 import { Link } from "react-router-dom";
+import iconAyam from '../assets/ayam_icon.png';
+import iconDaging from '../assets/daging_icon.png';
+import iconSayur from '../assets/sayur_icon.png';
+import iconNasi from '../assets/nasi_icon.png';
 
 const Main = () => {
+    const [banners, setBanners] = useState([]);
+    const [loading, setLoading] = useState(true);  // Add loading state
+    const [hoveredIndex, setHoveredIndex] = useState(null);
+
+    useEffect(() => {
+        // API BANNER
+        const fetchBanners = async () => {
+            try {
+                const response = await MainAPI.get('/banners');
+                setBanners(response.data);
+            } catch (error) {
+                console.error("Error fetching banners:", error);
+            } finally {
+                setLoading(false);  // Set loading to false after the data is fetched
+            }
+        };
+
+        fetchBanners();
+    }, []);
+
+    const categories = [
+        { name: "Menu Harian", link: "/menu-harian" },
+        { name: "Ayam", link: "/ayam", icon: iconAyam },
+        { name: "Daging", link: "/daging", icon: iconDaging },
+        { name: "Sayur", link: "/sayur", icon: iconSayur },
+        { name: "Nasi", link: "/nasi", icon: iconNasi },
+        { name: "Menu Tambahan", link: "/menu-tambahan"},
+    ];
+
     return (
-        <div className=" h-screen bg-black p-10">
-            <div className="flex justify-between items-center mt-24">
-                <div className="text-left text-white w-1/2 ml-20">
-                    <div className="font-jockey">
-                        <h1 className="text-4xl font-bold mb-2">Mau catring yang murah dan enak</h1>
-                        <h2 className="text-3xl font-bold">
-                            Ayo order di <span className="text-yellow-400">Tuberta</span> Kitchen
-                        </h2>
-                    </div>
-                    <p className="mt-4 text-lg">
-                    Berawal dari keinginan untuk menghadirkan hidangan rumahan yang sehat dan bergizi bagi mereka yang sibuk dan tak sempat memasak, kami tumbuh menjadi penyedia layanan kuliner yang lebih beragam
-                    </p>
-                    <div className="mt-8">
-                        <Link to="/Menu"
-                        className="bg-yellow-400 text-black text-lg font-bold px-6 py-3 rounded"
-                        >
-                            Order Sekarang
-                        </Link>
-                    </div>
-                </div>
-                <div className="md:w-1/2 w-full flex justify-center">
-                    <img
-                        src={MainIMG}
-                        alt="MainImage"
-                        className="w-full max-w-md rounded-lg object-cover"
-                    />
+        <div className="h-full bg-MAIN p-6 md:p-10 pt-16 md:pt-20">
+            {/* Banner Section */}
+            <div className="relative w-full h-[246px] md:h-[246px] overflow-hidden mt-6">
+                <div className="flex space-x-6 md:space-x-10 animate-scroll cursor-default">
+                    {loading ? (
+                        <div className="w-full h-[246px] flex items-center justify-center">
+                            <span className="text-white text-xl font-semibold animate-pulse">Loading Banners...</span>
+                        </div>
+                    ) : (
+                        [...banners, ...banners].map((banner, index) => (
+                            <div
+                                key={index}
+                                className="flex-shrink-0 w-[200px] md:w-[525px] h-[200px] md:h-[246px] relative"
+                                onMouseEnter={() => setHoveredIndex(index)}
+                                onMouseLeave={() => setHoveredIndex(null)}
+                            >
+                                <img
+                                    src={banner.imageUrl}
+                                    alt={banner.label}
+                                    className="w-full h-full object-cover rounded-md"
+                                />
+                                <div
+                                    className={`absolute inset-0 bg-black bg-opacity-50 opacity-0 transition-opacity duration-300 flex items-center justify-center ${
+                                        hoveredIndex === index ? 'opacity-100' : 'opacity-0'
+                                    }`}
+                                >
+                                    <h2 className="text-white text-xl font-semibold">{banner.label}</h2>
+                                </div>
+                            </div>
+                        ))
+                    )}
                 </div>
             </div>
+
+            {/* section kategori */}
+            <div className="flex flex-col items-center md:mt-32">
+                <div className="p-6 rounded-lg shadow-lg w-[95%] sm:w-[90%] max-w-4xl border-2 border-white">
+                    <h2 className="text-center text-white text-xl md:text-2xl font-lexend mb-6">Category</h2>
+                    <div
+                        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 font-jockey text-xl">
+                        {categories.map((category, index) => (
+                            <Link
+                                to={category.link}
+                                key={index}
+                                className="bg-yellow-400 flex flex-col items-center justify-center text-center p-4 rounded-lg text-black hover:bg-yellow-300 transition-all"
+                            >
+                                {category.icon && (
+                                    <img
+                                        src={category.icon}
+                                        alt={category.name}
+                                        className="w-12 h-12 md:w-20 md:h-20 object-contain mb-2"
+                                    />
+                                )}
+                                <span className="text-md md:text-2xl">{category.name}</span>
+                            </Link>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     );
 };

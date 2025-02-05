@@ -3,14 +3,15 @@ import { Outlet } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 
-const MainLayout = ({ cart, addItemToCart, removeItemFromCart, clearCart }) => {
+const MainLayout = ({ cart, addItemToCart, removeFromCart, clearCart, handleQuantityChange }) => {
     return (
         <>
             <Navbar
             cart={cart}
             addItemToCart={addItemToCart}
-            removeItemFromCart={removeItemFromCart}
+            removeFromCart={removeFromCart}
             clearCart={clearCart}
+            handleQuantityChange={handleQuantityChange}
             />
             <Outlet />
             <Footer />

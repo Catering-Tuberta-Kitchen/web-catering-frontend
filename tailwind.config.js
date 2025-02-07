@@ -25,7 +25,14 @@ module.exports = {
         lexend: ["'Lexend Exa'", "sans-serif"],
         jockey: ["'Jockey One'", "sans-serif"],
       },
+      keyframes: {
+        moveRightToLeft: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-100%)" },
+        },
+      },
       animation: {
+         moveRightToLeft: "moveRightToLeft 10s linear infinite",
         'spin-slow': 'spin 2s linear infinite',
         'pulse-fast': 'pulse 0.5s linear infinite',
       },

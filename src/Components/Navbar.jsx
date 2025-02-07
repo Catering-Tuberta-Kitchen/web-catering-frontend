@@ -21,7 +21,7 @@ const Navbar = ({ cart, clearCart, removeFromCart, handleQuantityChange }) => {
             return;
         }
 
-        const phoneNumber = "082136412013";
+        const phoneNumber = "+6281392975528";
         const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
 
         const itemsList = cart
@@ -72,7 +72,8 @@ const Navbar = ({ cart, clearCart, removeFromCart, handleQuantityChange }) => {
     const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
     return (
-        <div className="h-20 bg-MAIN flex items-center justify-between md:justify-between px-4 border-b border-b-white fixed top-0 left-0 w-full z-50">
+        <div
+            className="h-20 bg-MAIN flex items-center justify-between md:justify-between px-4 border-b border-b-white fixed top-0 left-0 w-full z-50">
             {/* Dropdown Background (untuk mobile) */}
             {isDropdownOpen && (
                 <div
@@ -82,16 +83,21 @@ const Navbar = ({ cart, clearCart, removeFromCart, handleQuantityChange }) => {
             )}
 
             {/* NAVBAR LOGO */}
-            <div className="flex items-center md:space-x-4">
-                <img
-                    src={NavIcon}
-                    alt="Navbar Icon"
-                    className="h-20 md:h-16 lg:h-20 w-auto"
-                />
-                <div className="flex flex-col items-start">
-                    <h3 className="font-lexend font-normal text-PrimFont text-xl sm:text-2xl md:text-3xl lg:text-2xl">Tuberta</h3>
-                    <h3 className="font-kameron font-medium text-SecFont text-lg sm:text-xl md:text-2xl lg:text-xl">Kitchen</h3>
-                </div>
+
+            <div className="flex items-center md:space-x-4 cursor-pointer">
+                <Link to="/">
+                    <div className="flex items-center">
+                        <img
+                            src={NavIcon}
+                            alt="Navbar Icon"
+                            className="h-20 md:h-16 lg:h-20 w-auto"
+                        />
+                        <div className="flex flex-col items-start">
+                            <h3 className="font-lexend font-normal text-PrimFont text-xl sm:text-2xl md:text-3xl lg:text-2xl">Tuberta</h3>
+                            <h3 className="font-kameron font-medium text-SecFont text-lg sm:text-xl md:text-2xl lg:text-xl">Kitchen</h3>
+                        </div>
+                    </div>
+                </Link>
             </div>
 
             <div className="flex space-x-4">
@@ -108,7 +114,8 @@ const Navbar = ({ cart, clearCart, removeFromCart, handleQuantityChange }) => {
                 {/* CART & LOGIN */}
                 <div className="flex items-center gap-4 relative">
                     {/* Icon Keranjang Belanja untuk Desktop */}
-                    <div className={`md:block hidden text-white cursor-pointer relative z-20 transition-colors p-2 rounded-lg ${
+                    <div
+                        className={`md:block hidden text-white cursor-pointer relative z-20 transition-colors p-2 rounded-lg ${
                             isDropdownOpen ? "bg-FOURTH text-black" : "hover:bg-FOURTH hover:text-black"
                         }`}
                         onClick={toggleCartDropdown}
@@ -203,7 +210,7 @@ const Navbar = ({ cart, clearCart, removeFromCart, handleQuantityChange }) => {
                     {/* Profil atau Tombol Login */}
                     {user ? (
                         <div className="flex items-center gap-4">
-                            <div className="bg-blue-400 p-2 rounded-full">
+                            <div className="bg-white text-MAIN p-2 rounded-full">
                                 <Link to="/profile">
                                     <User/>
                                 </Link>
@@ -221,44 +228,46 @@ const Navbar = ({ cart, clearCart, removeFromCart, handleQuantityChange }) => {
 
                 {/* Icon Keranjang untuk mobile */}
                 <div
-                    className="md:hidden fixed bottom-4 right-4 bg-FOURTH hover:bg-THIRD hover:text-FOURTH transition duration-200 text-black p-3 rounded-full shadow-lg cursor-pointer z-10"
+                    className={`md:hidden fixed bottom-4 right-4 bg-FOURTH hover:bg-THIRD hover:text-FOURTH transition duration-200 text-black p-3 rounded-full shadow-lg cursor-pointer z-10 ${
+                        isDropdownOpen ? "bg-THIRD text-black" : "hover:bg-FOURTH hover:text-white"
+                    }`}
                     onClick={toggleCartDropdown}
                 >
-                    <ShoppingCart/>
-                    {cart.length > 0 && (
-                        <span
-                            className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                    <ShoppingCart className={isDropdownOpen ? "text-white" : "text-black"}/>
+                        {cart.length > 0 && (
+                            <span
+                                className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
             {cart.reduce((total, item) => total + item.quantity, 0)}
           </span>
-                    )}
+                        )}
+                    </div>
+
+                    {/* Tombol MenuMobile */}
+                    <div className="md:hidden flex items-center">
+                        <button
+                            onClick={toggleMobileMenu}
+                            className="text-white"
+                        >
+                            <Menu className="w-6 h-6"/>
+                        </button>
+                    </div>
                 </div>
 
-                {/* Tombol MenuMobile */}
-                <div className="md:hidden flex items-center">
-                    <button
-                        onClick={toggleMobileMenu}
-                        className="text-white"
-                    >
-                        <Menu className="w-6 h-6"/>
-                    </button>
-                </div>
+                {/* Mobile Menu Dropdown */}
+                {isMobileMenuOpen && (
+                    <div className="md:hidden fixed top-20 left-0 w-full bg-MAIN z-40">
+                        <ul className="flex flex-col items-center space-y-4 py-4">
+                            {["/", "/About", "/Menu", "/Contact"].map((path) => (
+                                <li key={path}
+                                    className={`font-inria font-medium text-center px-4 py-2 rounded-3xl hover:bg-PrimFont hover:text-black transition duration-300 ${isActive(path) ? "text-black bg-PrimFont" : "text-PrimFont"}`}>
+                                    <Link to={path} onClick={toggleMobileMenu}>{path.slice(1) || "Home"}</Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
             </div>
+            );
+            };
 
-            {/* Mobile Menu Dropdown */}
-            {isMobileMenuOpen && (
-                <div className="md:hidden fixed top-20 left-0 w-full bg-MAIN z-40">
-                    <ul className="flex flex-col items-center space-y-4 py-4">
-                        {["/", "/About", "/Menu", "/Contact"].map((path) => (
-                            <li key={path}
-                                className={`font-inria font-medium text-center px-4 py-2 rounded-3xl hover:bg-PrimFont hover:text-black transition duration-300 ${isActive(path) ? "text-black bg-PrimFont" : "text-PrimFont"}`}>
-                                <Link to={path} onClick={toggleMobileMenu}>{path.slice(1) || "Home"}</Link>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            )}
-        </div>
-    );
-};
-
-export default Navbar;
+            export default Navbar;

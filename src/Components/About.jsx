@@ -1,5 +1,26 @@
 import React from "react";
 import AboutImage from "../assets/about.jpg";
+import AsuransiAllianz from "../assets/TubertaCompanyAssets/asuransi-allianz.jpg";
+import AsuransiMpm from "../assets/TubertaCompanyAssets/asuransi-mpm.png";
+import DinasTataKotaSemarang from "../assets/TubertaCompanyAssets/dinas-tata-kota-semarang.jpg";
+import FakPeternakanUndip from "../assets/TubertaCompanyAssets/fak-peternakan-undip.png";
+import FakPsikologiUnika from "../assets/TubertaCompanyAssets/fak-psikolog-unika.jpg";
+import KpuKabSemarang from "../assets/TubertaCompanyAssets/kpu-kab-semarang.jpg";
+import KpuProvinsi from "../assets/TubertaCompanyAssets/kpu-provinsi.png";
+import PtSakatinta from "../assets/TubertaCompanyAssets/PT-sakatinta.png";
+import RektoratUnnes from "../assets/TubertaCompanyAssets/rektorat-unnes.jpg";
+
+const gambarArray = [
+    { src: AsuransiAllianz, alt: "Asuransi Allianz" },
+    { src: AsuransiMpm, alt: "Asuransi MPM" },
+    { src: DinasTataKotaSemarang, alt: "Dinas Tata Kota Semarang" },
+    { src: FakPeternakanUndip, alt: "Fakultas Peternakan Undip" },
+    { src: FakPsikologiUnika, alt: "Fakultas Psikologi Unika" },
+    { src: KpuKabSemarang, alt: "KPU Kab Semarang" },
+    { src: KpuProvinsi, alt: "KPU Provinsi" },
+    { src: PtSakatinta, alt: "PT Sakatinta" },
+    { src: RektoratUnnes, alt: "Rektorat Unnes" },
+];
 
 const About = () => {
     return (
@@ -64,6 +85,31 @@ const About = () => {
                     pernikahan, ataupun acara spesial lainnya. Kami berkomitmen untuk menyediakan makanan yang tidak
                     hanya lezat tetapi juga disesuaikan dengan selera, preferensi, serta kebutuhan gizi setiap tamu, sehingga setiap hidangan yang disajikan dapat memberikan pengalaman kuliner yang memuaskan dan berkesan.
                 </p>
+            </div>
+            <div>
+                <h1 className="text-white font-jockey text-2xl md:text-3xl flex justify-center mb-10">
+                    Menjadi&nbsp;<span className="text-PrimFont">PILIHAN</span>&nbsp;yang&nbsp;<span className="text-PrimFont">TERBAIK</span>
+                </h1>
+                <div className="overflow-hidden w-full relative pb-10">
+                    <div className="flex animate-moveRightToLeft">
+                        {gambarArray.map((gambar, index) => (
+                            <img
+                                key={index}
+                                src={gambar.src}
+                                alt={gambar.alt}
+                                className="w-20 md:w-44 h-auto rounded-lg shadow-md mx-3"
+                            />
+                        ))}
+                        {gambarArray.map((gambar, index) => (
+                            <img
+                                key={`clone-${index}`}
+                                src={gambar.src}
+                                alt={gambar.alt}
+                                className="w-20 md:w-44 h-auto rounded-lg shadow-md mx-3"
+                            />
+                        ))}
+                    </div>
+                </div>
             </div>
         </div>
     );

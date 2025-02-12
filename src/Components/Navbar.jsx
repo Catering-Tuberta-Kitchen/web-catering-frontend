@@ -48,7 +48,7 @@ const Navbar = ({ cart, clearCart, removeFromCart, handleQuantityChange }) => {
 
 
         const userNumber = userDetails.phone;
-        const sellerNumber = "+6282136412013";
+        const sellerNumber = "+6281392975528";
         const userName = `${userDetails.firstName} ${userDetails.lastName}`;
         const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
 

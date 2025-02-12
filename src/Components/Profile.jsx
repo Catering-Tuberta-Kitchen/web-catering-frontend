@@ -1,24 +1,26 @@
 import {React, useEffect, useState} from "react";
-import ProfilePic from "../assets/dummy-profile.png";
+import ProfilePic from "../assets/Profile-users.png";
 import { auth, db } from "../API/Firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
 
 function Profile() {
     const [userDetails, setUserDetails] = useState(null);
-    const fetchUserData=async()=> {
-        auth.onAuthStateChanged(async (user) =>{
-            console.log(user);
-            const docRef = doc(db, "Users", user.uid);
-            const docSnap = await getDoc(docRef);
-            if(docSnap.exists()){
-                setUserDetails(docSnap.data());
-                console.log(docSnap.data());
+    const fetchUserData = async () => {
+        auth.onAuthStateChanged(async (user) => {
+            if (user) {
+                console.log(user);
+                const docRef = doc(db, "Users", user.uid);
+                const docSnap = await getDoc(docRef);
+                if (docSnap.exists()) {
+                    setUserDetails(docSnap.data());
+                    console.log(docSnap.data());
+                } else {
+                    console.log("Users Tidak Terdaftar");
+                }
             } else {
-                console.log("Users Tidak Terdaftar");
-
+                console.log("Pengguna tidak terautentikasi");
             }
-
         });
     };
     useEffect(()=>{
@@ -46,12 +48,12 @@ function Profile() {
                 <div className="font-lexend">
                     {userDetails ? (
                         <>
-                        <p className="text-white text-lg">Profil Picture</p>
+                        <p className="text-white flex justify-center text-2xl font-lexend font-medium">Profile</p>
                         <div className="mt-4">
                             <img
                                 src={ProfilePic}
                                 alt="profile picture"
-                                className="rounded-full w-16 h-16"
+                                className="bg-white rounded-full w-16 h-16"
                             />
                         </div>
                         <div className="mt-6">

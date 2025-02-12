@@ -173,10 +173,10 @@ const Menus = ({ addItemToCart }) => {
                 })
                 .map(([category, products]) => (
                     <div key={category} id={products[0].categoryId}>
-                        <h2 className="flex justify-center text-PrimFont text-3xl md:text-4xl font-lexend mt-8 mb-4">
+                        <h2 className="flex justify-center text-PrimFont text-2xl md:text-4xl font-lexend mt-8 mb-4">
                             {category}
                         </h2>
-                        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
                             {products.map((product) => (
                                 <div
                                     key={product.id}
@@ -186,7 +186,7 @@ const Menus = ({ addItemToCart }) => {
                                         <img
                                             src={product.imageUrl}
                                             alt={product.name}
-                                            className="h-36 w-full sm:h-48 md:h-60 object-cover rounded-md mb-4"
+                                            className="h-56 w-full sm:h-48 md:h-60 object-cover rounded-md mb-4"
                                         />
                                         <h2 className="text-lg sm:text-xl font-jockey text-gray-800">
                                             {product.name}

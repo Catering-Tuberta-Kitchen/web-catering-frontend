@@ -4,7 +4,7 @@ import { ShoppingCart, User, Trash2, Menu } from "lucide-react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../API/Firebase";
-import NavIcon from "../Assets/NavIcon.png";
+import NavIcon from "/src/assets/NavIcon.png";
 import { MainAPI } from "../API/BaseURL";
 
 const Navbar = ({ cart, clearCart, removeFromCart, handleQuantityChange }) => {

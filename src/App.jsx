@@ -92,7 +92,7 @@ const handleQuantityChange = (id, newQuantity) => {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: (
+      element:
         <MainLayout
           cart={cart}
           addItemToCart={addItemToCart}
@@ -100,7 +100,7 @@ const handleQuantityChange = (id, newQuantity) => {
           clearCart={clearCart}
           handleQuantityChange={handleQuantityChange}
         />
-      ),
+      ,
       errorElement: <Error />,
       children: [
         {

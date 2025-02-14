@@ -11,8 +11,8 @@ const Main = () => {
     const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(true);
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [fetchError, setFetchError] = useState(false); // State untuk menyimpan status error
-    const timeoutRef = useRef(null);
+    const [fetchError, setFetchError] = useState(false);
+    // const timeoutRef = useRef(null);
 
     useEffect(() => {
         const fetchData = async () => {

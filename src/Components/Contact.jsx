@@ -68,7 +68,7 @@ const Contact = () => {
                 </h1>
             </div>
 
-            <div className="flex flex-col lg:flex-row items-start justify-between gap-10 p-10">
+            <div className="flex flex-col lg:flex-row items-center justify-between gap-10 p-10">
                 <div className="lg:w-1/2 mb-10">
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3959.8631962880045!2d110.4006374!3d-7.0253623!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e708b000965c125%3A0x3a80460ac295feef!2sTuberta%20Kitchen!5e0!3m2!1sid!2sid!4v1737346800078!5m2!1sid!2sid"

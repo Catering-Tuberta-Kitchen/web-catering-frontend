@@ -72,8 +72,8 @@ const Login = () => {
                 </form>
                 <div className="text-center mt-6 font-lexend text-sm text-white">
                     <p>
-                        Lupa <Link to="/recovery-account" className="text-[#FFCC00] underline">password</Link>? atau
-                        <Link to="/register-account" className="text-[#FFCC00] underline"> Buat akun baru</Link>?
+                        Lupa <Link to="/recovery-account" className="text-[#FFCC00] underline">password</Link> atau {" "}
+                        <Link to="/register-account" className="text-[#FFCC00] underline">Buat akun baru</Link>?
                     </p>
                 </div>
             </div>

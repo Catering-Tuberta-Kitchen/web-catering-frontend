@@ -43,7 +43,7 @@ const Menus = ({ addItemToCart }) => {
                         description: product.description,
                         imageUrl: product.images?.[0]?.url || "",
                         category: product.category.name,
-                        categoryId: product.category.id, // Tambahkan categoryId
+                        categoryId: product.category.id,
                     }));
                 setProducts(mappedProducts);
             } catch (err) {

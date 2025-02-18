@@ -72,9 +72,20 @@ const Login = () => {
                 </form>
                 <div className="text-center mt-6 font-lexend text-sm text-white">
                     <p>
-                        Lupa <Link to="/recovery-account" className="text-[#FFCC00] underline">password</Link> atau {" "}
-                        <Link to="/register-account" className="text-[#FFCC00] underline">Buat akun baru</Link>?
+                        Lupa{" "}
+                        <Link
+                            to="/recovery-account"
+                            className="relative text-[#FFCC00] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-[#FFCC00] after:transition-all after:duration-300 after:ease-in-out hover:after:w-full after:rounded">
+                            password
+                        </Link>{" "}
+                        atau{" "}
+                        <Link
+                            to="/register-account"
+                            className="relative text-[#FFCC00] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-[#FFCC00] after:transition-all after:duration-300 after:ease-in-out hover:after:w-full after:rounded">
+                            Buat akun baru
+                        </Link>?
                     </p>
+
                 </div>
             </div>
         </div>

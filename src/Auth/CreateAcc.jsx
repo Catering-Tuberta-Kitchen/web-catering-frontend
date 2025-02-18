@@ -112,7 +112,7 @@ const CreateAcc = () => {
                     <div className="flex justify-center mt-4 font-lexend">
                         <p className="text-white text-sm">
                             Sudah mempunyai Akun sebelumnya?{" "}
-                            <Link to="/login-account" className="text-[#FFCC00] underline">
+                            <Link to="/login-account" className="relative text-[#FFCC00] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-[#FFCC00] after:transition-all after:duration-300 after:ease-in-out hover:after:w-full after:rounded">
                                 Login
                             </Link>
                         </p>

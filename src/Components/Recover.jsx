@@ -17,7 +17,7 @@ function Recover() {
         setLoading(true);
 
         try {
-            const usersRef = collection(db, "users");
+            const usersRef = collection(db, "Users");
             const q = query(usersRef, where("email", "==", emailVal));
             const querySnapshot = await getDocs(q);
 
@@ -80,13 +80,14 @@ function Recover() {
                     <button
                         type="submit"
                         className={`w-full py-2 flex items-center justify-center rounded-md transition duration-200
-                        ${loading ? "bg-PrimFont cursor-not-allowed" : "bg-PrimFont hover:bg-HOVER text-black"}
-                        `}
+                        ${loading ? "bg-PrimFont cursor-not-allowed" : "bg-PrimFont hover:bg-HOVER text-black"}`}
                         disabled={loading}
                     >
-                        {loading ? (<>
+                        {loading ? (
+                            <>
                                 <Loader2 className="animate-spin h-5 w-5 mr-2 text-black"/>
-                                <span className="text-black">Memproses</span></>
+                                <span className="text-black">Memproses</span>
+                            </>
                         ) : (
                             "Kirim"
                         )}
